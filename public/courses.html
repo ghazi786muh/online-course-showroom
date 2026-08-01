@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Courses - CourseHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fa-solid fa-graduation-cap"></i> CourseHub</a>
+      <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html" class="active">Courses</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="login.html" class="nav-btn login-btn">Login</a></li>
+        <li><a href="signup.html" class="nav-btn signup-btn">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="section-title">
+      <h2>Explore All Courses</h2>
+      <p>Find the perfect skill to level up your technology and career path</p>
+    </section>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search courses by title or instructor...">
+    </div>
+
+    <div class="courses-grid" id="all-courses">
+      <!-- Dynamically Rendered -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>CourseHub</h3>
+        <p>Empowering learners worldwide through high quality video instruction and real hands-on projects.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Info</h3>
+        <p><i class="fa-solid fa-envelope"></i> support@coursehub.com</p>
+        <p><i class="fa-brands fa-whatsapp"></i> +92 326 7859035</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CourseHub Showroom. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/courses.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Course Showroom - Learn New Skills</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fa-solid fa-graduation-cap"></i> CourseHub</a>
+      <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="login.html" class="nav-btn login-btn">Login</a></li>
+        <li><a href="signup.html" class="nav-btn signup-btn">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Learn New Skills Online</h1>
+      <p>Start learning today from our premium, industry-vetted online courses.</p>
+      <a href="courses.html" class="cta-btn">Explore Courses</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section-title">
+      <h2>Featured Courses</h2>
+      <p>Handpicked courses to start your learning journey</p>
+    </section>
+
+    <div class="courses-grid" id="featured-courses">
+      <!-- Dynamically Rendered via JS -->
+    </div>
+
+    <section class="section-title" style="margin-top: 5rem;">
+      <h2>Why Choose Us</h2>
+      <p>Everything you need to excel in your career</p>
+    </section>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-chalkboard-user feature-icon"></i>
+        <h3>Expert Teachers</h3>
+        <p>Learn directly from industry experts with real-world experience.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-infinity feature-icon"></i>
+        <h3>Lifetime Access</h3>
+        <p>Study at your own pace with unlimited lifetime access to material.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-tags feature-icon"></i>
+        <h3>Affordable Prices</h3>
+        <p>Premium quality education accessible at unbeatable price points.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-certificate feature-icon"></i>
+        <h3>Certificate</h3>
+        <p>Earn verifiable certificates upon successful course completion.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-brands fa-whatsapp feature-icon"></i>
+        <h3>WhatsApp Support</h3>
+        <p>Direct instant messaging support for smooth enrollment.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>CourseHub</h3>
+        <p>Empowering learners worldwide through quality video instruction and real hands-on projects.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Info</h3>
+        <p><i class="fa-solid fa-envelope"></i> support@coursehub.com</p>
+        <p><i class="fa-brands fa-whatsapp"></i> +92 300 1234567</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CourseHub Showroom. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('/api/courses');
+        const data = await response.json();
+        const container = document.getElementById('featured-courses');
+        const waNumber = await getWhatsAppNumber();
+
+        if (data.success && data.courses.length > 0) {
+          const featured = data.courses.slice(0, 3);
+          container.innerHTML = featured.map(course => {
+            const message = `Hello,\n\nI want to buy this course.\n\nCourse Name:\n${course.title}\n\nPrice:\n$${course.price}\n\nPlease provide payment details.\n\nThank you.`;
+            const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            return `
+              <div class="course-card">
+                <img src="${course.image}" alt="${course.title}" class="course-image">
+                <div class="course-body">
+                  <h3 class="course-title">${course.title}</h3>
+                  <div class="course-meta">
+                    <span><i class="fa-solid fa-user"></i> ${course.instructor}</span>
+                    <span><i class="fa-solid fa-clock"></i> ${course.duration}</span>
+                  </div>
+                  <p class="course-desc">${course.description}</p>
+                  <div class="course-footer">
+                    <span class="price">PKR ${course.price}</span>
+                    <a href="${waUrl}" target="_blank" class="buy-btn">
+                      <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          container.innerHTML = '<p>No featured courses available.</p>';
+        }
+      } catch (err) {
+        console.error('Failed to load featured courses:', err);
+      }
+    });
+  </script>
+</body>
+</html>

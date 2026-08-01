@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - CourseHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Security Authentication Gate -->
+    <div id="auth-gate" class="form-card">
+      <h2 style="text-align: center; margin-bottom: 1.5rem;">Security Verification</h2>
+      <div id="auth-alert" class="alert"></div>
+      <form id="authForm">
+        <div class="form-group">
+          <label for="securityCode">Enter Security Code</label>
+          <input type="password" id="securityCode" class="form-control" required placeholder="Security Code">
+        </div>
+        <button type="submit" class="btn-submit">Verify & Access</button>
+      </form>
+    </div>
+
+    <!-- Protected Admin Content -->
+    <div id="admin-dashboard" class="form-card" style="display: none; max-width: 650px;">
+      <h2 style="text-align: center; margin-bottom: 1.5rem;">Add New Course</h2>
+      <div id="admin-alert" class="alert"></div>
+
+      <form id="addCourseForm">
+        <div class="form-group">
+          <label for="courseTitle">Course Title</label>
+          <input type="text" id="courseTitle" class="form-control" required placeholder="e.g. Master React Native">
+        </div>
+
+        <div class="form-group">
+          <label for="instructor">Instructor Name</label>
+          <input type="text" id="instructor" class="form-control" required placeholder="e.g. Jane Doe">
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price ($)</label>
+          <input type="number" id="price" class="form-control" required placeholder="49">
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration</label>
+          <input type="text" id="duration" class="form-control" required placeholder="e.g. 15 Hours">
+        </div>
+
+        <div class="form-group">
+          <label for="image">Course Image URL</label>
+          <input type="url" id="image" class="form-control" required placeholder="https://images.unsplash.com/...">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Course Description</label>
+          <textarea id="description" class="form-control" rows="4" required placeholder="Brief detail about course coverage..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Publish Course</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
